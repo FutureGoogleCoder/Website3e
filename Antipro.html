@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Anti_Pro17</title>
+    <button id="signIn"><img src="https://i.stack.imgur.com/XzoRm.png"></button>
+</head>
+<body>
+
+</body>
+<style>
+img {
+width: 600px;
+height: 220px;
+};
+</style>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBu16OxsdyyjRTcPWERNKydw-XXQt6ovMY",
+    authDomain: "antipro-6f128.firebaseapp.com",
+    databaseURL: "https://antipro-6f128.firebaseio.com",
+    projectId: "antipro-6f128",
+    storageBucket: "antipro-6f128.appspot.com",
+    messagingSenderId: "303030437400"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+var provider = new firebase.auth.GoogleAuthProvider();
+
+var signIn = document.getElementById("signIn");
+
+window.addEventListener("click", function() { 
+firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  var token = result.credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+console.log(user.displayName);
+  // ...
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+})});
+
+</script>
+</html>
